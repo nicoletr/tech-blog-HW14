@@ -1,0 +1,22 @@
+[
+    {
+      "title": "Heading",
+      "content": "Blog Text Here",
+      "user_id": 3
+    },
+    {
+        "title": "Heading 2",
+        "content": "Blog Text Here",
+        "user_id": 3
+    },
+    {
+        "title": "Heading 3",
+        "content": "Blog Text Here",
+        "user_id": 3
+    },
+    {
+        "title": "Heading 4",
+        "content": "Blog Text Here",
+        "user_id": 3
+    }
+]
