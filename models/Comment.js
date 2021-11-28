@@ -11,7 +11,10 @@ Comment.init(
     },
     body: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [50],
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
