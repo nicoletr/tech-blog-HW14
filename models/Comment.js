@@ -11,9 +11,9 @@ Comment.init(
     },
     body: {
       type: DataTypes.STRING,
-      allowNull: false,
+      notEmpty: true,
       validate: {
-        len: [50],
+        len: [1, 50],
       },
     },
     date_created: {
