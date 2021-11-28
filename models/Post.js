@@ -18,6 +18,11 @@ Post.init(
     body: {
         type: DataTypes.TEXT,
     },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,
