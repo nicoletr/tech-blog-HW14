@@ -52,7 +52,7 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
-    res.render('single-post', { post });
+    res.render('post-details', { post });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
