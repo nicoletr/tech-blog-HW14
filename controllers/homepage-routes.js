@@ -6,24 +6,11 @@ router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
       attributes: ['id', 'title', 'body', 'date_created'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'body', 'date_created', 'user_id', 'post_id'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
+      include: [User],
     });
 
-    const post = postData.get({ plain: true });
-    res.render('all-posts', { post });
+    const posts = postData.map((post)=> post.get({ plain: true }));
+    res.render('all-posts', { posts });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -34,21 +21,13 @@ router.get('/', async (req, res) => {
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [
+      include: [ User,
         {
           model: Comment,
-          attributes: ['id', 'body', 'date_created', 'user_id', 'post_id'],
-          include: 
-          {
-            model: User,
-            attributes: ['username']
-          }
+          include: [User]
+          
         },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
+      ]  
     });
 
     const post = postData.get({ plain: true });
@@ -72,6 +51,12 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
   //TODO: add conditional statement for if email is already in use
   //TODO: conditional statement for if username is taken
+
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  
   res.render('signup');
 });
 
